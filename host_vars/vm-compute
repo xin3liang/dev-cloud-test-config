@@ -1,0 +1,6 @@
+
+tunnel_interface: eth0
+network_tunnel_ip: "{{ansible_eth0.ipv4.address}}"
+
+ceph_host_osds:
+  - sdb

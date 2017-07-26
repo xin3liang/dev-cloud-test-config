@@ -1,0 +1,39 @@
+diff --git a/ansible/roles/network/tasks/main.yml b/ansible/roles/network/tasks/main.yml
+index 33d13bf..425e0d8 100644
+--- a/ansible/roles/network/tasks/main.yml
++++ b/ansible/roles/network/tasks/main.yml
+@@ -20,9 +20,9 @@
+   register: bridge_ports
+   changed_when: False
+ 
+-- name: Add external interface to the bridge
+-  when: "bridge_ports is defined and '{{network_external_iface}}' not in bridge_ports.stdout"
+-  command: ovs-vsctl add-port br-ex {{network_external_iface}}
++#- name: Add external interface to the bridge
++#  when: "bridge_ports is defined and '{{network_external_iface}}' not in bridge_ports.stdout"
++#  command: ovs-vsctl add-port br-ex {{network_external_iface}}
+ 
+ - name: Configure neutron.conf
+   template: src=roles/neutron/templates/neutron.conf dest=/etc/neutron/neutron.conf
+diff --git a/ansible/site.yml b/ansible/site.yml
+index 025b82e..6f2a6b9 100644
+--- a/ansible/site.yml
++++ b/ansible/site.yml
+@@ -170,7 +170,7 @@
+     - ["secrets/deployment-vars", "deployment-vars.example"]
+     - ["secrets/host_vars/{{inventory_hostname}}", "vars/empty"]
+   roles:
+-    - {role: nics, tags: [nics]}
++          #    - {role: nics, tags: [nics]}
+     - {role: network, tags: [network]}
+ 
+ # Compute Nodes Deployment
+@@ -191,7 +191,7 @@
+     - ["secrets/deployment-vars", "deployment-vars.example"]
+     - ["secrets/host_vars/{{inventory_hostname}}", "vars/empty"]
+   roles:
+-    - {role: nics, tags: [nics]}
++          #    - {role: nics, tags: [nics]}
+     - {role: compute, tags: [compute]}
+ 
+ - name: Configure Cinder Volumes
