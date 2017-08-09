@@ -4,7 +4,7 @@ controller_host: vm-controller
 network_host: vm-network
 
 # Ceph needs a unique value from "uuidgen"
-ceph_fsid: "eff96656-477a-4c68-9b1e-e997615c9484"
+ceph_fsid: "e05d6376-6965-4c48-9b36-b8f5c518e3b9"
 
 # Generated with: ceph-authtool -g --gen-print-key
 ceph_mon_pass: "AQD+HM9XTYv+CRAAK8PqN/vLYxetv18R0gnSAw=="
@@ -112,3 +112,6 @@ ldap_group_member_attribute: uniqueMember
 ldap_group_desc_attribute: description
 
 ldap_user_filter: (memberof=cn=openstack-users,ou=group,dc=example,dc=com)
+
+# Use Swift API or Ceph RADOS Gateway
+use_ceph_rgw: False
